@@ -17,6 +17,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Xamarin;iOS;MKOverlay;MKOverlayRenderer;Heatmap;PMHeatmap</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
