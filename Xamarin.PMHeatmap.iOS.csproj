@@ -10,7 +10,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<PackageId>Xamarin.PMHeatmap.iOS</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Paolo Mastrangelo</Authors>
 		<Description>An overlay that can be used to draw heatmap with iOS map.</Description>
 		<RepositoryUrl>https://github.com/paolo-mastrangelo/Xamarin.PMHeatmap.iOS</RepositoryUrl>
