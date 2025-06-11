@@ -10,7 +10,7 @@ env:
   
 jobs:
   build_and_publish:
-    runs-on: ubuntu-latest # Eseguiamo il job su un runner Ubuntu
+    runs-on: macos-latest # Eseguiamo il job su un runner macos
 
     steps:
     - name: Checkout Repository
