@@ -1,0 +1,58 @@
+name: Publish NuGet Package
+
+on:
+  release:
+    types: [published] # Questo workflow si attiverà quando una nuova release viene pubblicata su GitHub
+
+env:
+  # Definizione di una variabile d'ambiente per il percorso del progetto
+  PROJECT_PATH: 'Xamarin.PMHeatmap.iOS.csproj' 
+  
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest # Eseguiamo il job su un runner Ubuntu
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4 # Clona il repository nel runner
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4 # Configura l'ambiente .NET
+      with:
+        dotnet-version: '8.0.x' # Specifica la versione di .NET SDK da usare (es. 6.0.x, 7.0.x, 8.0.x)
+
+    - name: Restore NuGet Packages
+      run: dotnet restore ${{ env.PROJECT_PATH }} # Ripristina i pacchetti NuGet del progetto
+
+    - name: Build Project
+      # Compila il progetto in configurazione Release
+      # Il valore di Version viene preso automaticamente dal .csproj
+      run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore 
+
+    - name: Pack NuGet Package
+      # Crea il pacchetto .nupkg.
+      # L'azione `generatePackageOnBuild` nel .csproj genera già il pacchetto,
+      # ma `dotnet pack` è esplicito e può essere usato per controllare la versione.
+      # Usiamo il GitVersion per ottenere la versione corretta dal tag della release.
+      # Questa è la parte più sofisticata per il versionamento automatico.
+      run: |
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,') # Estrae la versione dal tag della release (es. v1.0.0 -> 1.0.0)
+        VERSION=${VERSION#v} # Rimuove il prefisso 'v' se presente
+        echo "Detected version: $VERSION"
+        dotnet pack ${{ env.PROJECT_PATH }} --configuration Release --no-build --output nuget_packages -p:Version=$VERSION
+      
+    - name: Publish NuGet Package
+      run: |
+        # Ottieni il percorso del file .nupkg generato
+        NUGET_PACKAGE_PATH=$(find nuget_packages -name "*.nupkg" | head -n 1)
+        if [ -z "$NUGET_PACKAGE_PATH" ]; then
+          echo "Error: .nupkg file not found!"
+          exit 1
+        fi
+        echo "Found NuGet package: $NUGET_PACKAGE_PATH"
+        dotnet nuget push "$NUGET_PACKAGE_PATH" \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --source https://api.nuget.org/v3/index.json \
+          --skip-duplicate # Ignora se il pacchetto con la stessa versione esiste già
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }} # Rende il secret disponibile come variabile d'ambiente per il comando `dotnet nuget push`
