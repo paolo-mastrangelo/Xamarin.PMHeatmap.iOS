@@ -20,6 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v4 # Configura l'ambiente .NET
       with:
         dotnet-version: '8.0.x' # Specifica la versione di .NET SDK da usare (es. 6.0.x, 7.0.x, 8.0.x)
+    
+    - name: Install .NET Workloads
+      run: dotnet workload install wesl-experimental # Aggiungi questo passo per installare il workload mancante
 
     - name: Restore NuGet Packages
       run: dotnet restore ${{ env.PROJECT_PATH }} # Ripristina i pacchetti NuGet del progetto
