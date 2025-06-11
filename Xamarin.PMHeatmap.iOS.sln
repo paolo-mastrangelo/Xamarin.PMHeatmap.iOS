@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.PMHeatmap.iOS", "Xamarin.PMHeatmap.iOS.csproj", "{103A8671-F7B6-DEC8-C5BA-69FEC47CFB45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{103A8671-F7B6-DEC8-C5BA-69FEC47CFB45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103A8671-F7B6-DEC8-C5BA-69FEC47CFB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6AACAE4-25B8-45F3-8AB3-99F7DB36A958}
+	EndGlobalSection
+EndGlobal

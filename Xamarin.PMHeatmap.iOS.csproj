@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-ios</TargetFramework>
+		<OutputType>Library</OutputType>
+		<UseMaui>false</UseMaui>
+		<!-- solo se MAUI è coinvolto -->
+		<GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Configurations>Debug</Configurations>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="DTMHeatmapOverlayRenderer - Copy.cs" />
+	  <Compile Remove="DTMHeatmapOverlayRenderer_history.cs" />
+	  <Compile Remove="DTMHeatmapOverlayRenderer_notworking.cs" />
+	</ItemGroup>
+</Project>
