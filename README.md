@@ -1,5 +1,5 @@
 # Xamarin.PMHeatmap.iOS
-An overlay that can be use to draw heatmap with iOS map
+An overlay that can be used to draw heatmap with iOS map
 
 **Override of OverlayRenderer**
 ```
